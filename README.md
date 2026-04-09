@@ -37,6 +37,12 @@ npm run dev
 npm run build
 ```
 
+GitHub Pages 构建：
+
+```bash
+npm run build:pages
+```
+
 ## 已实现页面
 
 1. `总收益中枢首页`
@@ -134,3 +140,17 @@ src/
 - 无后端、无数据库、无真实登录
 - 已完成本地构建验证
 - 已验证开发服务器可在 `localhost:6173` 启动
+
+## 部署地址
+
+GitHub Pages 已配置自动部署工作流：
+
+- 目标地址：[https://medai2026.github.io/ProfitOS/](https://medai2026.github.io/ProfitOS/)
+- 触发方式：推送到 `main` 后自动构建并发布
+- 工作流文件：`.github/workflows/deploy-pages.yml`
+
+Vercel 已配置静态部署：
+
+- 配置文件：`vercel.json`
+- 导入仓库后可直接构建，无需额外改写 SPA 路由配置
+- 实际 Vercel 域名会在你把仓库接入 Vercel 后自动生成
