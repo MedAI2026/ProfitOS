@@ -24,19 +24,17 @@ import { useProfitStore } from '@/store/useProfitStore';
 import { calculateSandboxOutcome } from '@/utils/calculations';
 
 export function useProfitModel() {
-  const {
-    selectedRole,
-    activeScriptId,
-    explanationId,
-    sandboxParams,
-    selectedPresetId,
-    setRole,
-    setActiveScriptId,
-    setExplanationId,
-    updateSandboxParam,
-    applySandboxPreset,
-    resetSandbox,
-  } = useProfitStore();
+  const selectedRole = useProfitStore((state) => state.selectedRole);
+  const activeScriptId = useProfitStore((state) => state.activeScriptId);
+  const explanationId = useProfitStore((state) => state.explanationId);
+  const sandboxParams = useProfitStore((state) => state.sandboxParams);
+  const selectedPresetId = useProfitStore((state) => state.selectedPresetId);
+  const setRole = useProfitStore((state) => state.setRole);
+  const setActiveScriptId = useProfitStore((state) => state.setActiveScriptId);
+  const setExplanationId = useProfitStore((state) => state.setExplanationId);
+  const updateSandboxParam = useProfitStore((state) => state.updateSandboxParam);
+  const applySandboxPreset = useProfitStore((state) => state.applySandboxPreset);
+  const resetSandbox = useProfitStore((state) => state.resetSandbox);
 
   return useMemo(() => {
     const activeRole = roleProfiles.find((role) => role.id === selectedRole) ?? roleProfiles[0];

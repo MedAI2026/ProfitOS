@@ -8,12 +8,10 @@ import { useAuthStore } from '@/store/useAuthStore';
 export default function TopBar() {
   const navigate = useNavigate();
   const { activeRole, activeScript, quickBrief } = useProfitModel();
-  const { displayName, title, username, logout } = useAuthStore((state) => ({
-    displayName: state.displayName,
-    title: state.title,
-    username: state.username,
-    logout: state.logout,
-  }));
+  const displayName = useAuthStore((state) => state.displayName);
+  const title = useAuthStore((state) => state.title);
+  const username = useAuthStore((state) => state.username);
+  const logout = useAuthStore((state) => state.logout);
   const now = new Intl.DateTimeFormat('zh-CN', {
     dateStyle: 'long',
   }).format(new Date());
