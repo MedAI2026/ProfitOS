@@ -1,11 +1,19 @@
-import { NavLink } from 'react-router-dom';
-import { CalendarDays, Sparkles } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { CalendarDays, LogOut, Sparkles, UserRound } from 'lucide-react';
 import { navigationItems } from '@/mock/profitData';
 import RoleSwitcher from '@/components/RoleSwitcher';
 import { useProfitModel } from '@/hooks/useProfitModel';
+import { useAuthStore } from '@/store/useAuthStore';
 
 export default function TopBar() {
+  const navigate = useNavigate();
   const { activeRole, activeScript, quickBrief } = useProfitModel();
+  const { displayName, title, username, logout } = useAuthStore((state) => ({
+    displayName: state.displayName,
+    title: state.title,
+    username: state.username,
+    logout: state.logout,
+  }));
   const now = new Intl.DateTimeFormat('zh-CN', {
     dateStyle: 'long',
   }).format(new Date());
@@ -23,9 +31,33 @@ export default function TopBar() {
           </div>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-mist">{quickBrief}</p>
         </div>
-        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-mist">
-          <CalendarDays className="h-4 w-4 text-sky" />
-          {now}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-mist">
+            <CalendarDays className="h-4 w-4 text-sky" />
+            {now}
+          </div>
+          <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky/10">
+              <UserRound className="h-4 w-4 text-sky" />
+            </span>
+            <div className="min-w-0">
+              <div className="truncate text-sm font-medium text-white">{displayName}</div>
+              <div className="truncate text-xs text-mist">
+                {title} · {username}
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                logout();
+                navigate('/login', { replace: true });
+              }}
+              className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-3 py-2 text-xs text-mist transition hover:border-white/20 hover:text-white"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+              退出
+            </button>
+          </div>
         </div>
       </div>
 
