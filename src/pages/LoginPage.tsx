@@ -20,22 +20,22 @@ interface LoginLocationState {
 const highlights = [
   {
     icon: Activity,
-    title: '收益中枢入口',
-    description: '从经营判断进入，而不是从单张报表进入。',
+    title: '收益决策入口',
+    description: '从总收益中枢切入，而不是从单张经营报表切入。',
   },
   {
     icon: Sparkles,
-    title: '智能策略演示',
-    description: '围绕推演、建议和协同剧本展开产品讲述。',
+    title: '策略推演视角',
+    description: '围绕情景模拟、建议生成与协同剧本组织演示链路。',
   },
   {
     icon: ShieldCheck,
     title: '生产经营一体',
-    description: '把成本、负荷、市场与碳放进同一决策语境。',
+    description: '把成本、负荷、市场与碳放进同一套经营判断语境。',
   },
 ];
 
-const metrics = [
+const summaryMetrics = [
   { value: '9', label: '核心工作台' },
   { value: '3', label: '协同剧本' },
   { value: '8', label: '经营智能体' },
@@ -53,7 +53,6 @@ export default function LoginPage() {
   const [username, setUsername] = useState(demoCredentials.username);
   const [password, setPassword] = useState(demoCredentials.password);
   const [showPassword, setShowPassword] = useState(false);
-  const [keepSignedIn, setKeepSignedIn] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -86,55 +85,55 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#05070d] p-4 text-ink sm:p-6">
-      <div className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-[1680px] overflow-hidden rounded-[34px] border border-white/8 bg-[#07101b] shadow-[0_42px_120px_rgba(0,0,0,0.42)] xl:grid-cols-[1.08fr_0.92fr]">
-        <section className="relative border-b border-white/6 bg-[radial-gradient(circle_at_18%_18%,rgba(83,148,237,0.18),transparent_26%),radial-gradient(circle_at_76%_14%,rgba(255,255,255,0.05),transparent_22%),radial-gradient(circle_at_60%_88%,rgba(39,88,166,0.18),transparent_32%),linear-gradient(180deg,#1b2638_0%,#121a2a_48%,#0b111d_100%)] px-7 py-8 sm:px-12 sm:py-12 xl:border-b-0 xl:border-r xl:border-white/6">
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.03),transparent_38%,transparent_68%,rgba(255,255,255,0.02))]" />
+    <div className="h-[100dvh] overflow-hidden bg-[#04070d] px-3 py-3 text-ink sm:px-4 sm:py-4">
+      <div className="mx-auto grid h-full max-w-[1560px] overflow-hidden rounded-[30px] bg-[linear-gradient(180deg,rgba(11,17,28,0.98),rgba(6,10,18,1))] shadow-[0_40px_120px_rgba(0,0,0,0.42)] ring-1 ring-white/7 xl:grid-cols-[1.03fr_0.97fr]">
+        <section className="relative border-b border-white/6 bg-[radial-gradient(circle_at_top_left,rgba(74,134,235,0.18),transparent_24%),radial-gradient(circle_at_70%_18%,rgba(255,255,255,0.05),transparent_18%),linear-gradient(180deg,#1a2433_0%,#111827_46%,#0a0f19_100%)] px-6 py-6 sm:px-8 sm:py-8 xl:border-b-0 xl:border-r xl:border-white/6">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(65,115,214,0.12),transparent_30%)]" />
 
           <div className="relative z-10 flex h-full flex-col">
-            <div className="inline-flex w-fit items-center gap-3 rounded-full bg-white/[0.06] px-5 py-3 text-sm font-semibold uppercase tracking-[0.04em] text-white/72 ring-1 ring-white/10">
-              <span className="h-2.5 w-2.5 rounded-full bg-[#4d8ef7]" />
+            <div className="inline-flex w-fit items-center gap-3 rounded-full bg-white/[0.05] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-white/68 ring-1 ring-white/8">
+              <span className="h-2 w-2 rounded-full bg-[#4c8fff]" />
               ProfitOS Runtime
             </div>
 
-            <div className="mt-14 max-w-3xl">
-              <h1 className="text-[48px] font-semibold leading-[1.04] tracking-tight text-white sm:text-[56px] lg:text-[68px]">
+            <div className="mt-8 max-w-2xl">
+              <h1 className="text-[38px] font-semibold leading-[1.08] tracking-tight text-white sm:text-[46px] lg:text-[54px]">
                 ProfitOS
                 <br />
                 收益操作系统
               </h1>
-              <p className="mt-8 max-w-2xl text-[17px] leading-9 text-white/56 sm:text-[18px]">
+              <p className="mt-4 max-w-xl text-[14px] leading-7 text-white/52 sm:text-[15px]">
                 面向火电厂与综合能源电厂的演示入口。默认使用预置账号登录，用于展示生产、经营、市场、深调与碳协同的一体化工作台。
               </p>
             </div>
 
-            <div className="mt-12 space-y-5">
-              {highlights.map((item) => {
+            <div className="mt-6 space-y-0">
+              {highlights.map((item, index) => {
                 const Icon = item.icon;
 
                 return (
                   <div
                     key={item.title}
-                    className="flex items-start gap-5 rounded-[28px] bg-[linear-gradient(90deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-5 py-5 ring-1 ring-white/10 backdrop-blur-sm"
+                    className={`flex items-start gap-4 py-3.5 ${index !== 0 ? 'border-t border-white/6' : ''}`}
                   >
-                    <span className="mt-0.5 flex h-14 w-14 shrink-0 items-center justify-center rounded-[20px] bg-[#304d81]/72 text-[#77afff]">
-                      <Icon className="h-5 w-5" />
+                    <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/[0.06] text-[#79afff] ring-1 ring-white/8">
+                      <Icon className="h-4 w-4" />
                     </span>
                     <div>
-                      <div className="text-[18px] font-semibold text-white">{item.title}</div>
-                      <p className="mt-2 text-[15px] leading-7 text-white/46">{item.description}</p>
+                      <div className="text-[16px] font-medium text-white">{item.title}</div>
+                      <p className="mt-1.5 text-[13px] leading-6 text-white/44">{item.description}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            <div className="mt-auto border-t border-white/10 pt-8">
-              <div className="grid gap-6 sm:grid-cols-3">
-                {metrics.map((item) => (
+            <div className="mt-auto pt-6">
+              <div className="grid gap-4 border-t border-white/6 pt-5 sm:grid-cols-3">
+                {summaryMetrics.map((item) => (
                   <div key={item.label}>
-                    <div className="text-[46px] font-semibold tracking-tight text-white">{item.value}</div>
-                    <div className="mt-2 text-[18px] text-white/58">{item.label}</div>
+                    <div className="text-[28px] font-semibold tracking-tight text-white">{item.value}</div>
+                    <div className="mt-1.5 text-[13px] text-white/48">{item.label}</div>
                   </div>
                 ))}
               </div>
@@ -142,38 +141,35 @@ export default function LoginPage() {
           </div>
         </section>
 
-        <section className="relative flex items-center justify-center bg-[linear-gradient(180deg,#030915_0%,#050c18_100%)] px-6 py-10 sm:px-10 xl:px-12">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(44,94,186,0.12),transparent_36%)]" />
+        <section className="relative flex items-center justify-center px-5 py-6 sm:px-7 sm:py-7 xl:px-8">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(44,94,186,0.10),transparent_36%)]" />
 
-          <div className="relative z-10 w-full max-w-[600px] rounded-[36px] bg-[#141c2c]/96 px-6 py-7 ring-1 ring-white/8 shadow-[0_30px_80px_rgba(0,0,0,0.34)] sm:px-8 sm:py-9">
-            <div className="flex items-center gap-3 text-sm font-semibold text-[#5aa2ff]">
-              <span className="rounded-xl bg-[#1e3d73] px-3 py-2 uppercase tracking-[0.04em] text-[#70aeff]">
-                Demo Login
-              </span>
-              <span>演示环境入口</span>
+          <div className="relative z-10 w-full max-w-[470px] rounded-[28px] bg-[linear-gradient(180deg,rgba(20,28,44,0.92),rgba(15,22,36,0.96))] px-5 py-5 shadow-[0_24px_72px_rgba(0,0,0,0.30)] ring-1 ring-white/7 sm:px-6 sm:py-6">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#6ea8ff]">
+              Demo Access
             </div>
 
-            <h2 className="mt-6 text-[34px] font-semibold leading-tight tracking-tight text-white sm:text-[40px]">
-              进入 ProfitOS 演示环境
+            <h2 className="mt-3 text-[24px] font-semibold tracking-tight text-white sm:text-[28px]">
+              登录 ProfitOS
             </h2>
-            <p className="mt-4 max-w-[520px] text-[15px] leading-8 text-white/52">
-              默认登录后进入总收益中枢，可从导航切换到市场、沙盘、智能体与经营驾驶舱。
+            <p className="mt-2.5 text-[13px] leading-6 text-white/48">
+              使用预置演示账号进入系统，查看收益中枢、策略沙盘与智能体协同工作台。
             </p>
 
-            <form onSubmit={handleSubmit} className="mt-10 space-y-6">
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div>
                 <label
                   htmlFor="username"
-                  className="flex items-center gap-2 text-[15px] font-semibold text-white"
+                  className="flex items-center gap-2 text-[12px] font-medium text-white/72"
                 >
-                  <UserRound className="h-4 w-4 text-[#76b1ff]" />
+                  <UserRound className="h-4 w-4 text-[#78afff]" />
                   用户名
                 </label>
                 <input
                   id="username"
                   value={username}
                   onChange={(event) => setUsername(event.target.value)}
-                  className="mt-3 h-16 w-full rounded-2xl border-none bg-[#253142] px-5 text-[17px] font-semibold text-white outline-none ring-1 ring-white/10 placeholder:text-white/28"
+                  className="mt-2 h-12 w-full rounded-[16px] border-none bg-white/[0.05] px-4 text-[15px] font-medium text-white outline-none ring-1 ring-white/8 placeholder:text-white/22 focus:ring-[#4f8dff]/40"
                   placeholder="请输入用户名"
                 />
               </div>
@@ -181,84 +177,76 @@ export default function LoginPage() {
               <div>
                 <label
                   htmlFor="password"
-                  className="flex items-center gap-2 text-[15px] font-semibold text-white"
+                  className="flex items-center gap-2 text-[12px] font-medium text-white/72"
                 >
-                  <LockKeyhole className="h-4 w-4 text-[#76b1ff]" />
+                  <LockKeyhole className="h-4 w-4 text-[#78afff]" />
                   密码
                 </label>
-                <div className="relative mt-3">
+                <div className="relative mt-2">
                   <input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                    className="h-16 w-full rounded-2xl border-none bg-[#253142] px-5 pr-16 text-[17px] font-semibold text-white outline-none ring-1 ring-white/10 placeholder:text-white/28"
+                    className="h-12 w-full rounded-[16px] border-none bg-white/[0.05] px-4 pr-14 text-[15px] font-medium text-white outline-none ring-1 ring-white/8 placeholder:text-white/22 focus:ring-[#4f8dff]/40"
                     placeholder="请输入密码"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword((value) => !value)}
-                    className="absolute inset-y-0 right-4 flex items-center text-white/42 transition hover:text-white/72"
+                    className="absolute inset-y-0 right-4 flex items-center text-white/36 transition hover:text-white/72"
                     aria-label={showPassword ? '隐藏密码' : '显示密码'}
                   >
-                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2.5">
+              <div className="rounded-[16px] bg-white/[0.035] px-4 py-3 ring-1 ring-white/7">
+                <div className="text-[12px] font-medium uppercase tracking-[0.18em] text-white/34">
+                  Demo Credentials
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <span className="rounded-full bg-white/[0.05] px-3 py-1.5 text-sm text-white/74">
+                    {demoCredentials.username}
+                  </span>
+                  <span className="rounded-full bg-white/[0.05] px-3 py-1.5 text-sm text-white/74">
+                    {demoCredentials.password}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between gap-3">
                 <button
                   type="button"
                   onClick={applyDemoCredentials}
-                  className="rounded-2xl bg-[#244a8b] px-5 py-3 text-[15px] font-semibold text-[#84b8ff] ring-1 ring-[#3562b8]"
+                  className="text-sm font-medium text-[#7bb3ff] transition hover:text-white"
                 >
-                  演示账号
+                  恢复默认账号
                 </button>
-                <span className="rounded-2xl bg-[#253041] px-5 py-3 text-[15px] font-semibold text-white/74 ring-1 ring-white/10">
-                  {demoCredentials.username}
-                </span>
-                <span className="rounded-2xl bg-[#253041] px-5 py-3 text-[15px] font-semibold text-white/74 ring-1 ring-white/10">
-                  {demoCredentials.password}
-                </span>
+                <div className="text-sm text-white/34">前端演示登录</div>
               </div>
 
               <button
                 type="submit"
-                className="inline-flex h-16 w-full items-center justify-center gap-3 rounded-[22px] bg-[linear-gradient(90deg,#1f63ff,#3f87ff)] text-[18px] font-semibold text-white shadow-[0_16px_40px_rgba(31,99,255,0.34)] transition hover:brightness-110"
+                className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-[16px] bg-[linear-gradient(90deg,#225fff,#3b84ff)] text-[15px] font-semibold text-white shadow-[0_14px_32px_rgba(34,95,255,0.28)] transition hover:brightness-110"
               >
-                登录系统
-                <ArrowRight className="h-5 w-5" />
+                进入系统
+                <ArrowRight className="h-4 w-4" />
               </button>
 
-              <div className="flex flex-col gap-4 text-[15px] text-white/60 sm:flex-row sm:items-center sm:justify-between">
-                <label className="flex items-center gap-3 font-medium">
-                  <input
-                    type="checkbox"
-                    checked={keepSignedIn}
-                    onChange={(event) => setKeepSignedIn(event.target.checked)}
-                    className="h-4 w-4 rounded border-white/15 bg-transparent accent-[#2f72ff]"
-                  />
-                  保持登录
-                </label>
-                <div className="flex items-center gap-3">
-                  <span>前端校验</span>
-                  <span className="text-white/28">|</span>
-                  <span>支持退出</span>
-                </div>
-              </div>
-
               {error ? (
-                <div className="rounded-2xl bg-[#381a22] px-5 py-4 text-[15px] leading-7 text-white ring-1 ring-[#6f3344]">
+                <div className="rounded-[16px] bg-[#351923] px-4 py-3 text-sm leading-6 text-white ring-1 ring-[#693244]">
                   {error}
                 </div>
               ) : (
-                <div className="rounded-2xl bg-[#132a57] px-5 py-4 text-[15px] font-medium text-[#84b8ff] ring-1 ring-[#2b58a5]">
-                  演示账号已自动填充，点击即可进入系统。
+                <div className="rounded-[16px] bg-[#11274f] px-4 py-3 text-sm text-[#8ebcff] ring-1 ring-[#244a8e]">
+                  演示账号已填充，可直接进入系统。
                 </div>
               )}
 
-              <div className="text-center text-[14px] leading-7 text-white/38">
-                这是演示用途的模拟登录页，仅用于进入产品工作台，不建立真实用户、权限与账号体系。
+              <div className="pt-1 text-center text-[13px] leading-6 text-white/34">
+                仅用于进入产品演示工作台，不建立真实用户与权限体系。
               </div>
             </form>
           </div>
